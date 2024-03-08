@@ -43,3 +43,35 @@ char printBlock(int block){
         return '0';
 }
 
+void show (int board[][3]) {
+    cout<<endl;
+    for (int row = 0; row < 3; row++){
+        cout<<" "<< printBlock(board[row][0]) <<" |";
+        cout<<" "<< printBlock(board[row][1]) <<" |";
+        cout<<" "<< printBlock(board[row][2]) <<endl;
+
+        if(row!=2){
+            cout<<"__ __ __\n"<<endl;
+        }
+    }
+}
+
+void playMove (int board[][3], int player) {
+    int row, col, check;
+    do{
+        cout<<"Linha: ";
+        cin >>row;
+        cout<<"Coluna: ";
+        cin >> col;
+        row--; col--;
+
+        check = board[row][col] || row<0 || row>2 || col<0 || col>2;
+        if (check)
+            cout<<"Essa casa não está vazia ou fora do intervalo 3x3"<<endl;
+    }while(check);
+
+    if (player == 0)
+        board[row][col] = 1;
+    else 
+        board[row][col] = -1;
+}
